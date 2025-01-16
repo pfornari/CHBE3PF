@@ -1,0 +1,11 @@
+components:
+  requestBodies:
+    AddCart:
+      type: object
+      properties:
+        products:
+          type: Array
+          description: Array vacío donde se agregarán los productos que se vayan a comprar.
+
+      example:
+        products: []

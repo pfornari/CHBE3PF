@@ -1,0 +1,14 @@
+<h1>Cambio de Contraseña</h1>
+    {{#if errorMessage}}
+    <p style="color: red;">{{errorMessage}}</p>
+    {{/if}}
+    {{#if successMessage}}
+    <p style="color: green;">{{successMessage}}</p>
+    {{/if}}
+    <form action="/api/sessions/cambiodepass" method="POST">
+        <label for="password">Nueva Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+        <label for="confirmPassword">Confirmar Contraseña:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <button type="submit">Cambiar Contraseña</button>
+    </form>

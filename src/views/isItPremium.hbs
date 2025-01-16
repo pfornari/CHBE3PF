@@ -1,0 +1,32 @@
+<div>
+  {{#if premiumRole}}
+    <h1>Bienvenido Premium User!</h1>
+    <p>Felicitaciones! Ya tienes acceso a contenido premium.</p>
+  {{else}}
+    <h1>Acceso Restringido</h1>
+    <p>Para acceder al contenido Premium necesitas subir: 1 imagen de perfil, 1
+      imagen de producto y 1 imagen de tu documentación.</p>
+
+    <form
+      id="imageUploadForm"
+      action="/upload"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <div>
+        <label for="image">Selecciona una imagen:</label>
+        <input type="file" id="image" name="image" accept="image/*" />
+        <select name="folder">
+          <option value="profile">Perfil</option>
+          <option value="products">Productos</option>
+          <option value="documents">Documentos</option>
+        </select>
+      </div>
+      <div>
+        <button type="submit">Subir</button>
+      </div>
+    </form>
+
+    <button onclick="upgradeToPremium()">Actualizar a Premium</button>
+  {{/if}}
+</div>

@@ -1,0 +1,47 @@
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID del producto autogenerado por mongo.
+        title:
+          type: String
+          description: Nombre del producto.
+        description:
+          type: String
+          description: Descripción del producto.
+        price:
+          type: Number
+          description: Precio del producto.
+        code:
+          type: String
+          unique: true
+          description: Código del producto. Debe ser único.
+        status:
+          type: Boolean
+          description: Status del producto. Por defecto es true.
+        category:
+          type: String
+          description: Categoría del producto. Sirve para hacer una subdivisión de productos.
+        stock:
+          type: Number
+          description: Cantidad de stock del producto.
+        thumbnails:
+          type: String
+          description: Link a imagen del producto.
+        owner:
+          type: String
+          description: Nombre del usuario que ingresó el producto.
+
+      example:
+        _id: ObjectId("65dba2e55ec0f4c4381a1e8f")
+        title: taza
+        description: para té
+        price: 1000
+        code: abc123
+        status: true
+        category: tazas
+        stock: 50
+        thumbnails: []

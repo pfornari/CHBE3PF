@@ -1,0 +1,20 @@
+<h1>Pagina del administrador</h1>
+
+<h2>Eliminar Usuarios Inactivos</h2>
+    <p>Esta acción eliminará todos los usuarios que han estado inactivos por más de dos dias.</p>
+    <button id="deleteInactiveUsersButton" onclick="deleteInactiveUsers()">Eliminar Usuarios Inactivos</button>
+<h2>Lista de Usuarios</h2>
+    <ul>
+        {{#each users}}
+            <li>
+                <strong>Nombre:</strong> {{this.name}} <br>
+                <strong>Email:</strong> {{this.email}} <br>
+                <strong>Estado:</strong> {{this.active}} <br>
+                {{#if this.active}}
+                    <button onclick="deleteUser('{{this._id}}')">Eliminar</button>
+                {{/if}}
+            </li>
+        {{/each}}
+    </ul>
+
+<script src="/js/adminPage.js"></script>

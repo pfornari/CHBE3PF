@@ -1,0 +1,15 @@
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID del carrito autogenerado por mongo.
+        products:
+          type: Array
+          description: Array con los productos que fueron agregados al carrito.
+
+      example:
+        _id: ObjectId("65dba2e55ec0f4c4381a1e8f")
+        products: []

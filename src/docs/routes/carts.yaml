@@ -1,0 +1,199 @@
+# /apidocs/
+paths:
+  /api/carts:
+    post:
+      summary: Crea un nuevo carrito.
+      tags:
+        - Carts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            description: Objeto de solicitud para crear un nuevo carrito.
+      responses:
+        "200":
+          description: Request exitoso. Retorna el nuevo carrito creado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+        "400":
+          description: Request no encontrado.
+        "500":
+          description: Error del lado del servidor.
+
+    get:
+      summary: Obtiene todos los carritos.
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Request exitoso. Retorna un array de todos los carritos.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Cart"
+        "400":
+          description: Request no encontrado.
+        "500":
+          description: Error del lado del servidor.
+
+  /api/carts/{cid}:
+    get:
+      summary: Obtiene un carrito por su ID.
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: ID del carrito que se busca.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request exitoso. Retorna un objeto con los detalles del carrito.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+        "400":
+          description: Request no encontrado.
+        "500":
+          description: Error del lado del servidor.
+
+    delete:
+      summary: Elimina un carrito por su ID.
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: ID del carrito que se quiere eliminar.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request exitoso. Retorna el carrito eliminado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+        "400":
+          description: Request no encontrado.
+        "500":
+          description: Error del lado del servidor.
+
+  /api/carts/{cid}/products/{pid}:
+    delete:
+      summary: Elimina un producto del carrito.
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: ID del carrito.
+          schema:
+            type: string
+        - name: pid
+          in: path
+          required: true
+          description: ID del producto que se desea eliminar del carrito.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request exitoso. Retorna el producto eliminado del carrito.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "400":
+          description: Request no encontrado.
+        "500":
+          description: Error del lado del servidor.
+
+    post:
+      summary: Agrega un producto al carrito.
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: ID del carrito.
+          schema:
+            type: string
+        - name: pid
+          in: path
+          required: true
+          description: ID del producto que se desea agregar al carrito.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request exitoso. Retorna el carrito con el producto agregado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+        "400":
+          description: Request no encontrado.
+        "500":
+          description: Error del lado del servidor.
+
+  /api/carts/{cid}/purchase:
+    get:
+      summary: Renderiza la página de compra del carrito.
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: ID del carrito.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request exitoso. Retorna la página de compra del carrito.
+          content:
+            text/html:
+              schema:
+                type: string
+        "400":
+          description: Request no encontrado.
+        "500":
+          description: Error del lado del servidor.
+
+    post:
+      summary: Finaliza la compra del carrito.
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: ID del carrito.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Request exitoso. Retorna un mensaje de confirmación de compra.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Compra realizada con éxito."
+        "400":
+          description: Request no encontrado.
+        "500":
+          description: Error del lado del servidor.

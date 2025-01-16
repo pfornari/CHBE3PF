@@ -1,0 +1,176 @@
+# /apidocs/
+paths:
+
+  /api/products:
+    get:
+      summary: Obtiene todos los productos de la app.
+      tags:
+         - Products
+
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: El número de productos que retorna.
+        - in: query
+          name: category
+          schema:
+            type: string
+          description: Filtro por la propiedad categoría del producto.
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: El número de página que va a mostrar. Cada página tiene un límite de 10 productos.
+        - in: query
+          name: stock
+          schema:
+            type: string
+          description: Filtro por la propiedad stock del producto.
+
+      responses:
+        "200":
+          description: Request exitoso. Retorna un array de productos.
+          content: 
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: "#/components/schemas/Product"
+        "400":
+          description: Request no encontrado.
+        "500":
+          description: Error del lado del servidor.
+
+  /api/products/{id}:
+    get:
+      summary: Obtiene un único producto de la app, especificado por el parámetro :id. 
+      tags:
+         - Products
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id del producto que se busca.
+          schema: 
+            $type: string
+
+      responses:
+        "200":
+          description: Request exitoso. Retorna un objeto con las prodpiedades de un único producto.
+          content: 
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Product"
+
+        "400":
+          description: Request no encontrado.
+        "500":
+          description: Error del lado del servidor.
+
+  /api/products:
+    post:
+      summary: Guarda los datos del producto en la base de datos. 
+      tags:
+         - Products
+      requestBody: 
+        content: 
+          application/json:
+            required: true
+            schema:
+              $ref: "#/components/schemas/Product"
+
+      responses:
+        "200":
+          description: Request exitoso. Retorna el producto guardado.
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+
+        "400":
+          description: Request no encontrado.
+        "500":
+          description: Error del lado del servidor.        
+
+    delete: 
+      summary: Elimina un único producto de la app, especificado por el parámetro :id.
+      tags:
+         - Products
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id del producto que se busca.
+          schema: 
+            $type: string
+
+      responses:
+        "200":
+          description: Request exitoso. Retorna el objeto eliminado. 
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+
+        "400":
+          description: Request no encontrado.
+        "500":
+          description: Error del lado del servidor.
+
+  /api/products/{id}:
+    put:
+      summary: Modifica un único producto de la app, especificado por el parámetro :id, según lo que se mande por el req.body
+      tags:
+         - Products
+         
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id del producto que se quiere cambiar.
+          schema: 
+            $type: string
+
+      requestBody: 
+        content: 
+          application/json:
+            required: true
+            schema:
+              $ref: "#/components/schemas/Product"
+
+
+      responses:
+        "200":
+          description: Request exitoso. Retorna un objeto con las prodpiedades modificadas de un único producto.
+          content: 
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Product"
+
+        "400":
+          description: Request no encontrado.
+        "500":
+          description: Error del lado del servidor.
+
+
+  /api/products/getmockproducts:
+    get:
+      summary: Obtiene productos de prueba.
+      tags:
+         - Products
+
+      responses:
+        "200":
+          description: Request exitoso. Retorna un array de productos de prueba.
+          content: 
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: "#/components/schemas/Product"
+        "400":
+          description: Request no encontrado.
+        "500":
+          description: Error del lado del servidor.
