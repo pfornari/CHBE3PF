@@ -1,4 +1,4 @@
 ### Imagen en Docker Hub
-https://hub.docker.com/repository/docker/jfornari/be3pf/general
+https://hub.docker.com/r/jfornari/be3pf
 
 PUERTO:8080
